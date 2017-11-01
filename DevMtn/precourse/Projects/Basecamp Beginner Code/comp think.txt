@@ -1,0 +1,31 @@
+Computational Thinking{
+step1 = Identify Pieces
+step2 = Execute Actions
+step3 = Run Logic
+}
+Create function
+-Name
+-Arguments
+ --obj
+ --2 strings
+Add Strings to Object
+-Properties
+ --Instagram
+ --Twitter
+Return Object
+Call Function
+-Pass in provided 'stuff'
+
+Name Var
+Name function
+Name parameters (value)
+Name Total var
+
+Differentiate between odds and evens using remainder%
+Add Numbers of selected class
+return total sum
+
+use for Loops for logic
+use nested conditional to differentiate and add
+
+i value to 
