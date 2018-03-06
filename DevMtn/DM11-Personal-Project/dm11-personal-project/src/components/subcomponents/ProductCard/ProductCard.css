@@ -1,0 +1,31 @@
+.cardImg {
+  height: 50%;
+  width: 50%;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+.ProductCard {
+  margin: 10px;
+  flex-basis: 200px;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 3px;
+}
+@media (max-width: 600px) {
+  .cardImg {
+    height: 150px;
+    width: 150px;
+  }
+  .ProductCard {
+    margin: 10px;
+    width: 340px;
+    height: 340px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 3px;
+  }
+}

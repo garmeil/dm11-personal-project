@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Mukta+Malar:400,700");
+.App {
+  text-align: center;
+  font-family: "Mukta Malar";
+}
+a {
+  text-decoration: none;
+}
+link {
+  text-decoration: none;
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: cadetblue;
+}
+header h1 {
+  color: springgreen;
+  font-weight: 700;
+}
+#Hamburger {
+  display: none;
+}
+.NavLinks {
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+.Nav-Item {
+  min-width: 70px;
+  font-weight: bold;
+  height: auto;
+  color: #551b8d;
+}
+.active1 {
+  color: forestgreen;
+}
+.Header-Logo {
+  height: 40px;
+  width: 40px;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+.flex {
+  display: flex;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.column {
+  flex-direction: column;
+}
+.topnav {
+  display: flex;
+}
+.Gallery {
+  flex-flow: row wrap;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  header {
+    justify-content: space-between;
+    height: 60px;
+  }
+  .Header-Logo {
+    margin-left: 10px;
+  }
+  .topnav #Hamburger {
+    display: flex;
+    align-self: flex-end;
+  }
+  .topnav .Nav-Item {
+    display: none;
+    padding: 9px 0;
+  }
+  .topnav .Nav-Item.active1 {
+    background: blue;
+  }
+  .topnav.responsive .Nav-Item {
+    display: flex;
+  }
+  .topnav {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    flex-direction: column;
+    background: cadetblue;
+
+    width: 100px;
+    border: 2px black solid;
+  }
+}
