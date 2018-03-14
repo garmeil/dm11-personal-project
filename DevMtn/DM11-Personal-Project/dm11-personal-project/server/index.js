@@ -31,6 +31,7 @@ const {
   getOrderById,
   getOrderByUser
 } = require("./controllers/orderController");
+const { updateUserInfo } = require("./controllers/accountController");
 
 massive(process.env.CONNECTION_STRING)
   .then(dbInstance => {
@@ -117,15 +118,15 @@ app.get(
   })
 );
 
-app.get("/api/me", (req, res) => {
-  if (req.user) res.status(200).json(req.user);
-  else res.redirect("http://localhost:3000/#/login");
-});
-
 app.get("/api/logout", (req, res) => {
   req.session.destroy(() => {
     res.redirect("http://localhost:3000/#/login");
   });
+});
+
+app.get("/api/me", (req, res) => {
+  if (req.user) res.status(200).json(req.user);
+  else res.redirect("http://localhost:3000/#/login");
 });
 
 app.get("/api/test", (req, res, next) => {
@@ -140,9 +141,6 @@ app.get("/api/test", (req, res, next) => {
     });
 });
 
-app.get("/api/user", (req, res, next) => {
-  console.log(req.session.user);
-});
 app.get("/api/getProducts", getProducts);
 app.get("/api/getProducts/:category", getProductsByCategory);
 
@@ -157,5 +155,11 @@ app.get("/api/checkout", checkOut);
 app.get("/api/orders", getOrders);
 app.get("/api/orders/:id", getOrderById);
 app.get("/api/userOrders/:id", getOrderByUser);
+
+//ACCOUNT ENDPOINTS
+app.get("/api/user", (req, res, next) => {
+  console.log(req.session.user);
+});
+app.put("/api/edit", updateUserInfo);
 
 app.listen(port, () => console.log(`Now Listening on Port: ${port}`));

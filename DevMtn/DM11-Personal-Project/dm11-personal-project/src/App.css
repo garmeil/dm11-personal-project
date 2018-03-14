@@ -114,6 +114,20 @@ header h1 {
 .space-between {
   justify-content: space-between;
 }
+.AccountInfo {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  margin-left: 15px;
+  margin-bottom: 45px;
+  border: 1px black solid;
+  flex-shrink: 1;
+  padding-left: 22px;
+  padding-bottom: 13px;
+}
+.AccountInfo h5 {
+  margin: 7px;
+}
 @media (max-width: 600px) {
   header {
     justify-content: space-between;

@@ -1,14 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUser, getOrders, getUserOrders } from "../../ducks/reducer";
+import AccountInfo from "../subcomponents/AccountInfo/AccountInfo";
 import Logout from "../subcomponents/Login/Logout";
 import OrdersTable from "../subcomponents/OrdersTable/OrdersTable";
+import TextField from "material-ui/TextField";
 
 class AccountPage extends React.Component {
   constructor() {
     super();
     this.state = {
-      userInput: ""
+      userInput: "",
+      toggle: false
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -30,23 +33,37 @@ class AccountPage extends React.Component {
       this.props.getUserOrders(this.state.userInput);
     }
   }
+  clickHandler(id) {
+    document.getElementById(id).value;
+  }
   render() {
     return (
       <div>
         <h1>{`Hello, ${this.props.user.full_name}`}</h1>
+        <button onClick={() => console.log(this.props.user)} />
 
         <Logout />
-        <div className="orderInput">
-          <input
-            placeholder="Search By Order ID"
-            id="ordersCriteria"
-            onChange={e => this.setState({ userInput: e.target.value })}
-          />
-          <button className="" onClick={this.handleClick}>
-            Search
-          </button>
-        </div>
-        <OrdersTable orders={this.props.orders} />
+        <AccountInfo />
+        <button onClick={() => this.setState({ toggle: !this.state.toggle })}>
+          Show Orders
+        </button>
+        {this.state.toggle ? (
+          <div>
+            <div className="orderInput">
+              <input
+                placeholder="Search By Order ID"
+                id="ordersCriteria"
+                onChange={e => this.setState({ userInput: e.target.value })}
+              />
+              <button className="" onClick={this.handleClick}>
+                Search
+              </button>
+            </div>
+            <OrdersTable orders={this.props.orders} />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   }

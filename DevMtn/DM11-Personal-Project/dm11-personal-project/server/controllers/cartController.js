@@ -39,18 +39,24 @@ module.exports = {
         .get("db")
         .createOrder([req.user.id])
         .then(response => {
-          req.session.user.cart.forEach((val, index) => {
-            req.app
-              .get("db")
-              .createOrderItem([response[0].orderid, val.id])
-              .then(response2 =>
-                req.app
-                  .get("db")
-                  .getOrderById(response[0].orderid)
-                  .then(response3 => res.status(200).json(response3))
-              )
-              .catch(console.log);
-          });
+          let promise = new Promise(
+            req.session.user.cart.forEach((val, index) => {
+              req.app
+                .get("db")
+                .createOrderItem([response[0].orderid, val.id])
+                .then(response2 =>
+                  req.app
+                    .get("db")
+                    .getOrderById(response[0].orderid)
+                    .then(response3 => {
+                      console.log("Response2 : ", response2);
+                      console.log("Response3 : ", response3);
+                      res.status(200).send(response3);
+                    })
+                )
+                .catch(console.log);
+            })
+          );
           console.log("Success", response[0].orderid);
           req.session.user.cart = [];
           req.session.user.total = 0;

@@ -7,6 +7,7 @@ const GET_USER = "GET_USER";
 const GET_ORDERS = "GET_ORDERS";
 const GET_USER_ORDERS = "GET_USER_ORDERS";
 const CHECKOUT = "CHECKOUT";
+const EDIT_USER_INFO = "EDIT_USER_INFO";
 
 export function getProducts(param) {
   return {
@@ -19,7 +20,6 @@ export function getProducts(param) {
       .catch(console.log)
   };
 }
-
 export function getCart() {
   return {
     type: GET_CART,
@@ -31,7 +31,6 @@ export function getCart() {
       .catch(console.log)
   };
 }
-
 export function clearCart() {
   return {
     type: CLEAR_CART,
@@ -54,7 +53,6 @@ export function getUser() {
       .catch(console.log)
   };
 }
-
 export function getOrders(criteria) {
   return {
     type: GET_ORDERS,
@@ -64,11 +62,11 @@ export function getOrders(criteria) {
       .catch(console.log)
   };
 }
-export function getUserOrders() {
+export function getUserOrders(uid) {
   return {
     type: GET_USER_ORDERS,
     payload: axios
-      .get("/api/userOrders")
+      .get(`/api/userOrders/${uid}`)
       .then(response => response.data)
       .catch(console.log)
   };
@@ -78,6 +76,19 @@ export function checkOut() {
     type: CHECKOUT,
     payload: axios
       .get("/api/checkOut")
+      .then(response => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch(console.log)
+  };
+}
+export function editUserInfo(body) {
+  return {
+    type: EDIT_USER_INFO,
+    //body must be an object
+    payload: axios
+      .put("/api/edit", body)
       .then(response => {
         console.log(response.data);
         return response.data;
@@ -109,6 +120,19 @@ export default function reducer(state = initialState, action) {
         user: action.payload
       });
     case `${GET_USER}_REJECTED`:
+      console.log("rejected");
+      return Object.assign({}, state, { isLoading: false, didErr: true });
+    case `${EDIT_USER_INFO}_PENDING`:
+      console.log("pending");
+      return Object.assign({}, state, { isLoading: true });
+    case `${EDIT_USER_INFO}_FULFILLED`:
+      console.log(action.payload);
+      return Object.assign({}, state, {
+        isLoading: false,
+        //user must be given req.user via backend
+        user: action.payload
+      });
+    case `${EDIT_USER_INFO}_REJECTED`:
       console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${CHECKOUT}_PENDING`:
