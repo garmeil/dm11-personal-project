@@ -67,15 +67,6 @@ export default class Header extends React.Component {
                 Shop
               </div>
             </Link>
-            <Link to="/About">
-              <div
-                className="Nav-Item"
-                id="About"
-                onClick={e => this.handleClick(e)}
-              >
-                About
-              </div>
-            </Link>
             <Link to="/Cart">
               <div
                 className="Nav-Item"
@@ -85,9 +76,26 @@ export default class Header extends React.Component {
                 Cart
               </div>
             </Link>
+            <Link to="/contact">
+              <div
+                className="Nav-Item"
+                id="Contact"
+                onClick={e => this.handleClick(e)}
+              >
+                Contact Us
+              </div>
+            </Link>
 
-            <div className="Login/Logout Nav-Item">
-              <Auth />
+            <div
+              id="Auth"
+              className="Login/Logout"
+              onClick={e => this.handleClick(e)}
+            >
+              <Auth
+                onClick={this.handleClick}
+                id="Auth"
+                className="Login/Logout"
+              />
             </div>
           </div>
         </div>

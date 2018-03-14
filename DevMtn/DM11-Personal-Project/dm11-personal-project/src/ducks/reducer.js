@@ -1,17 +1,18 @@
 import axios from "axios";
 
-const GET_ALL = "GET_ALL";
+const GET_PRODUCTS = "GET_PRODUCTS";
 const GET_CART = "GET_CART";
 const CLEAR_CART = "CLEAR_CART";
 const GET_USER = "GET_USER";
 const GET_ORDERS = "GET_ORDERS";
 const GET_USER_ORDERS = "GET_USER_ORDERS";
+const CHECKOUT = "CHECKOUT";
 
-export function getAll() {
+export function getProducts(param) {
   return {
-    type: GET_ALL,
+    type: GET_PRODUCTS,
     payload: axios
-      .get("/api/getProducts")
+      .get(`/api/getProducts${param ? "/" + param : ""}`)
       .then(response => {
         return response.data;
       })
@@ -72,6 +73,18 @@ export function getUserOrders() {
       .catch(console.log)
   };
 }
+export function checkOut() {
+  return {
+    type: CHECKOUT,
+    payload: axios
+      .get("/api/checkOut")
+      .then(response => {
+        console.log(response.data);
+        return response.data;
+      })
+      .catch(console.log)
+  };
+}
 
 const initialState = {
   products: [],
@@ -80,7 +93,8 @@ const initialState = {
   cart: [],
   total: 0,
   user: {},
-  orders: []
+  orders: [],
+  currentOrder: {}
 };
 
 export default function reducer(state = initialState, action) {
@@ -95,6 +109,18 @@ export default function reducer(state = initialState, action) {
         user: action.payload
       });
     case `${GET_USER}_REJECTED`:
+      console.log("rejected");
+      return Object.assign({}, state, { isLoading: false, didErr: true });
+    case `${CHECKOUT}_PENDING`:
+      console.log("pending");
+      return Object.assign({}, state, { isLoading: true });
+    case `${CHECKOUT}_FULFILLED`:
+      console.log(action.payload);
+      return Object.assign({}, state, {
+        isLoading: false,
+        currentOrder: action.payload
+      });
+    case `${CHECKOUT}_REJECTED`:
       console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_USER_ORDERS}_PENDING`:
@@ -121,16 +147,16 @@ export default function reducer(state = initialState, action) {
     case `${GET_ORDERS}_REJECTED`:
       console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
-    case `${GET_ALL}_PENDING`:
+    case `${GET_PRODUCTS}_PENDING`:
       console.log("pending");
       return Object.assign({}, state, { isLoading: true });
-    case `${GET_ALL}_FULFILLED`:
+    case `${GET_PRODUCTS}_FULFILLED`:
       console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         products: action.payload
       });
-    case `${GET_ALL}_REJECTED`:
+    case `${GET_PRODUCTS}_REJECTED`:
       console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_CART}_PENDING`:

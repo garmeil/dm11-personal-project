@@ -1,9 +1,12 @@
 import React from "react";
 import Checkout from "../subcomponents/Checkout/Checkout";
 import { connect } from "react-redux";
-import { getCart } from "../../ducks/reducer";
-import ProductCard from "../subcomponents/ProductCard/ProductCard";
+import { getCart, getUser, checkOut } from "../../ducks/reducer";
+import CartDiv from "../subcomponents/ProductCard/CartDiv";
 import axios from "axios";
+import "../subcomponents/ProductCard/CartDiv.css";
+import _ from "lodash";
+import { withRouter } from "react-router-dom";
 
 class Cart extends React.Component {
   constructor() {
@@ -22,34 +25,35 @@ class Cart extends React.Component {
   handleClick() {
     this.props.getCart();
   }
+
   render() {
     let cartBasket =
       this.props.cart.length > 0
-        ? this.props.cart.map((val, index) => {
-            //render cart items using ProductCard component
+        ? _.uniqWith(this.props.cart, _.isEqual).map((val, index) => {
+            let quantity = this.props.cart.filter(
+              item => item.name === val.name
+            ).length;
             return (
-              <ProductCard
-                product={val}
+              <CartDiv
+                handleClick={this.handleClick}
+                item={val}
+                quantity={quantity}
                 key={index}
-                onClick={this.handleClick}
               />
             );
           })
-        : "Empty Cart";
+        : "Nothing In Basket";
+
     return (
       <div>
-        <button
-          onClick={() =>
-            axios
-              .get("/api/checkout")
-              .then(response => this.handleClick())
-              .catch(console.log)
-          }
-        >
-          Checkout
-        </button>
         <h1>Total: ${this.precisionRound(this.props.total, 2) || "0"} </h1>
-        <Checkout name={"Sown Seeds"} description={"Green"} amount={1} />
+        <Checkout
+          handleClick={this.handleClick}
+          name={"Sown Seeds"}
+          description={"Green"}
+          amount={this.precisionRound(this.props.total * 1.0875, 2) || 1}
+          onClick={this.handleClick}
+        />
         <div>{cartBasket}</div>
       </div>
     );
@@ -60,4 +64,6 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getCart })(Cart);
+export default withRouter(
+  connect(mapStateToProps, { getCart, getUser, checkOut })(Cart)
+);

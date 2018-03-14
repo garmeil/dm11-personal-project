@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUser, getOrders } from "../../ducks/reducer";
+import { getUser, getOrders, getUserOrders } from "../../ducks/reducer";
 import Logout from "../subcomponents/Login/Logout";
 import OrdersTable from "../subcomponents/OrdersTable/OrdersTable";
 
@@ -13,11 +13,22 @@ class AccountPage extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    this.props.getUser();
-    this.props.getOrders();
+    this.props.getUser().then(response => {
+      if (this.props.user.admin) {
+        console.log("This dot Props dot User dot Admin is True");
+        this.props.getOrders();
+      } else {
+        console.log("User Orders Got");
+        this.props.getUserOrders(this.props.user.id);
+      }
+    });
   }
   handleClick() {
-    this.props.getOrders(this.state.userInput);
+    if (this.props.user.admin) {
+      this.props.getOrders(this.state.userInput);
+    } else {
+      this.props.getUserOrders(this.state.userInput);
+    }
   }
   render() {
     return (
@@ -27,6 +38,7 @@ class AccountPage extends React.Component {
         <Logout />
         <div className="orderInput">
           <input
+            placeholder="Search By Order ID"
             id="ordersCriteria"
             onChange={e => this.setState({ userInput: e.target.value })}
           />
@@ -45,4 +57,6 @@ function mapStateToProps(state) {
   return { user, orders };
 }
 
-export default connect(mapStateToProps, { getUser, getOrders })(AccountPage);
+export default connect(mapStateToProps, { getUser, getOrders, getUserOrders })(
+  AccountPage
+);

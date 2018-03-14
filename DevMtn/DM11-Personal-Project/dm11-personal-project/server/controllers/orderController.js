@@ -14,11 +14,14 @@ module.exports = {
       .catch(console.log);
   },
   getOrderByUser: (req, res, next) => {
-    if (req.user.id) {
+    if (req.params.id) {
       req.app
         .get("db")
-        .getOrderByUser(req.user.id)
-        .then(response => res.status(200).send(reponse))
+        .getOrderByUser(req.params.id)
+        .then(response => {
+          console.log(req.params.id);
+          res.status(200).send(response);
+        })
         .catch(console.log);
     } else {
       res.status(500).send(console.log("No User From Request"));

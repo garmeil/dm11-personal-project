@@ -23,6 +23,7 @@ const {
   addToCart,
   readFromCart,
   deleteFromCart,
+  removeAllFromCart,
   checkOut
 } = require("./controllers/cartController");
 const {
@@ -149,11 +150,12 @@ app.get("/api/getProducts/:category", getProductsByCategory);
 app.get("/api/cart", readFromCart);
 app.post("/api/cart/:id", addToCart);
 app.delete("/api/cart/:id", deleteFromCart);
+app.delete("/api/cart/all/:id", removeAllFromCart);
 app.get("/api/checkout", checkOut);
 
 //ORDER ENDPOINTS
 app.get("/api/orders", getOrders);
 app.get("/api/orders/:id", getOrderById);
-app.get("/api/userOrders", getOrderByUser);
+app.get("/api/userOrders/:id", getOrderByUser);
 
 app.listen(port, () => console.log(`Now Listening on Port: ${port}`));

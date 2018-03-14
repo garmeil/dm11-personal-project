@@ -23,6 +23,15 @@ module.exports = {
     req.app.get("db").getProductById(req.params.id);
     res.status(200).send(req.session.user);
   },
+  removeAllFromCart: (req, res, next) => {
+    const { user } = req.session;
+    const deleteId = req.params.id;
+    user.cart = user.cart.filter(val => {
+      return val.id != deleteId;
+    });
+    console.log(user.cart);
+    res.status(200).send(req.session.user);
+  },
   checkOut: (req, res, next) => {
     console.log(req.user);
     if (req.user && req.session.user.cart.length > 0) {
@@ -34,23 +43,21 @@ module.exports = {
             req.app
               .get("db")
               .createOrderItem([response[0].orderid, val.id])
+              .then(response2 =>
+                req.app
+                  .get("db")
+                  .getOrderById(response[0].orderid)
+                  .then(response3 => res.status(200).json(response3))
+              )
               .catch(console.log);
           });
-          console.log("Success");
+          console.log("Success", response[0].orderid);
           req.session.user.cart = [];
           req.session.user.total = 0;
-          res.status(200).json(req.session.user);
+
+          // res.status(200).json(response);
         })
         .catch(console.log);
     } else res.status(200).json("keloo");
-  },
-  clearCart: (req, res, next) => {
-    if (req.session.user) {
-      req.session.user.cart = [];
-      req.session.user.total = 0;
-      res.status(200).send(req.session.user);
-    } else {
-      res.status(500).send("No req.session.user exists");
-    }
   }
 };

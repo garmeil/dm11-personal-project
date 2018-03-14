@@ -12,9 +12,21 @@ class Auth extends React.Component {
     return (
       <div>
         {!this.props.user.full_name ? (
-          <Link to="/login">"Login"</Link>
+          <Link
+            to="/login"
+            className="Nav-Item"
+            id="Auth"
+            onClick={e => this.props.onClick(e)}
+          >
+            Login
+          </Link>
         ) : (
-          <Link to="/account">{`${this.props.user.full_name}`}</Link>
+          <Link
+            to="/account"
+            className="Nav-Item"
+            id="Auth"
+            onClick={e => this.props.onClick(e)}
+          >{`${this.props.user.full_name}`}</Link>
         )}
       </div>
     );

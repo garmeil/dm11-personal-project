@@ -8,13 +8,15 @@ class OrdersTable extends React.Component {
     let ordersReel = [];
     let tableHead = [];
     let tableCells = [];
-    if (orders.length > 0) {
+    if (orders && orders.length > 0) {
       for (let key in orders[0]) {
         if (key != "imgurl" && key != "id") {
           tableHead.push(<th>{key}</th>);
         }
       }
-      orders.forEach(val => ordersReel.push(<OrderRow orders={val} />));
+      orders.forEach((val, index) =>
+        ordersReel.push(<OrderRow key={index} orders={val} />)
+      );
     }
     return (
       <table className="OrdersTable greyGridTable">
