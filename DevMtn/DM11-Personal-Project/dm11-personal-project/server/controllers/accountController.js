@@ -13,10 +13,7 @@ module.exports = {
         req.user.id
       )
       .then(response => {
-        req.app
-          .get("db")
-          .getUserById(req.user.id)
-          .then(response => res.status(200).send(response));
+        res.status(200).send(req.user);
       })
       .catch(console.log);
   }

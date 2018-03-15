@@ -114,16 +114,25 @@ header h1 {
 .space-between {
   justify-content: space-between;
 }
+.AInfo {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
 .AccountInfo {
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
+
   margin-left: 15px;
   margin-bottom: 45px;
   border: 1px black solid;
   flex-shrink: 1;
   padding-left: 22px;
   padding-bottom: 13px;
+}
+
+.SaveChangesMobi {
+  display: none;
 }
 .AccountInfo h5 {
   margin: 7px;
@@ -135,6 +144,12 @@ header h1 {
   }
   .Header-Logo {
     margin-left: 10px;
+  }
+  .SaveChangesMobi {
+    display: block;
+  }
+  .SaveChangesDsktp {
+    display: none;
   }
   .active1 {
     color: #c7f3eb;

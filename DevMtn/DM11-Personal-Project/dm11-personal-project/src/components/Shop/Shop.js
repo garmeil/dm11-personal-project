@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { getProducts } from "../../ducks/reducer";
+import { getProducts, searchProductsName } from "../../ducks/reducer";
 import ProductCard from "../subcomponents/ProductCard/ProductCard";
 import { BeatLoader } from "react-spinners";
 import RaisedButton from "material-ui/RaisedButton";
 import "../subcomponents/ProductCard/ProductCard.css";
+import TextField from "material-ui/TextField";
 
 class Shop extends React.Component {
   constructor() {
@@ -20,10 +21,16 @@ class Shop extends React.Component {
     this.props.getProducts();
   }
   handleClick() {
-    this.props.getProducts(this.state.category);
+    let query = document.getElementById("NameSearch").value;
+    if (query) {
+      this.props.searchProductsName(this.state.category, query);
+    } else {
+      this.props.getProducts(this.state.category);
+    }
   }
   selectClick(e) {
     // console.log(e);
+    this.setState({ category: e });
     if (e === "Select a Category") {
       this.props.getProducts("");
       return;
@@ -59,8 +66,17 @@ class Shop extends React.Component {
             onClick={() => this.selectClick("garden utensil")}
           />
         </div>
-        <input className="NameSearch" placeholder="Search By Name" />
-        <button onClick={() => this.handleClick}>Search</button>
+        <TextField
+          hintText="SearchByName"
+          id="NameSearch"
+          className="NameSearch"
+        />
+        <RaisedButton
+          label="Search"
+          style={{ margin: 12 }}
+          onClick={() => this.handleClick()}
+          primary={true}
+        />
 
         <div className="Gallery flex center column">{cardReel}</div>
       </div>
@@ -73,4 +89,6 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { getProducts })(Shop);
+export default connect(mapStateToProps, { getProducts, searchProductsName })(
+  Shop
+);

@@ -39,14 +39,14 @@ export default class Header extends React.Component {
           </Link>
         </div>
         <div className="NavLinks">
-          <div className="topnav" id="myTopnav">
-            <div
-              className="Nav-Item"
-              id="Hamburger"
-              onClick={() => {
-                this.responsivity();
-              }}
-            >
+          <div
+            className="topnav"
+            id="myTopnav"
+            onClick={() => {
+              this.responsivity();
+            }}
+          >
+            <div className="Nav-Item" id="Hamburger">
               <Hamburger />
             </div>
             <Link to="/">

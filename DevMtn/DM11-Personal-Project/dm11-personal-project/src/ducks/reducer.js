@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const GET_PRODUCTS = "GET_PRODUCTS";
+const SEARCH_PRODUCTS_NAME = "SEARCH_PRODUCTS_NAME";
 const GET_CART = "GET_CART";
 const CLEAR_CART = "CLEAR_CART";
 const GET_USER = "GET_USER";
@@ -16,6 +17,19 @@ export function getProducts(param) {
       .get(`/api/getProducts${param ? "/" + param : ""}`)
       .then(response => {
         return response.data;
+      })
+      .catch(console.log)
+  };
+}
+export function searchProductsName(category, query) {
+  return {
+    type: SEARCH_PRODUCTS_NAME,
+    payload: axios
+      .get(`/api/getProducts${category ? "/" + category : ""}`)
+      .then(response => {
+        return response.data.filter((val, index) => {
+          return val.name.toLowerCase().includes(query.toLowerCase());
+        });
       })
       .catch(console.log)
   };
@@ -110,6 +124,18 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case `${SEARCH_PRODUCTS_NAME}_PENDING`:
+      console.log("pending");
+      return Object.assign({}, state, { isLoading: true });
+    case `${SEARCH_PRODUCTS_NAME}_FULFILLED`:
+      console.log(action.payload);
+      return Object.assign({}, state, {
+        isLoading: false,
+        products: action.payload
+      });
+    case `${SEARCH_PRODUCTS_NAME}_REJECTED`:
+      console.log("rejected");
+      return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_USER}_PENDING`:
       console.log("pending");
       return Object.assign({}, state, { isLoading: true });

@@ -4,6 +4,9 @@ import { getUser, editUserInfo } from "../../../ducks/reducer.js";
 import TextField from "material-ui/TextField";
 import axios from "axios";
 import swal from "sweetalert";
+import IconButton from "material-ui/IconButton";
+import ActionSave from "material-ui/svg-icons/content/save";
+import RaisedButton from "material-ui/RaisedButton";
 
 class AccountInfo extends React.Component {
   constructor() {
@@ -33,27 +36,27 @@ class AccountInfo extends React.Component {
   handleClick(body) {
     this.props
       .editUserInfo(body)
-      .then(response =>
-        this.props
-          .getUser()
-          .then(response =>
-            swal({ title: "Good job!", text: "Profile Updated!" })
-          )
-      );
+      .then(response => swal({ title: "Good job!", text: "Profile Updated!" }));
   }
   render() {
     return (
       <div className="AccountInfo">
-        <div className="flex space-between">
+        <div className="AInfo">
           <h2>Account Info</h2>
-          <button
-            onClick={() =>
-              // prettier-ignore
-              this.handleClick(this.state)
-            }
-          >
-            Edit
-          </button>
+
+          <div className="SaveChangesMobi">
+            <IconButton
+              onClick={() =>
+                // prettier-ignore
+                this.handleClick(this.state)
+              }
+              tooltip="Save Changes"
+              touch={true}
+              tooltipPosition="top-left"
+            >
+              <ActionSave />
+            </IconButton>
+          </div>
         </div>
         <div className="flex">
           <h3>Name: </h3>
@@ -101,6 +104,12 @@ class AccountInfo extends React.Component {
             id="text-field-default"
             defaultValue={this.props.user.zipcode}
             onChange={e => this.setState({ zipcode: e.target.value })}
+          />
+        </div>
+        <div className="SaveChangesDsktp">
+          <RaisedButton
+            label="Save Changes"
+            style={{ margin: 12, alignSelf: "center" }}
           />
         </div>
       </div>
