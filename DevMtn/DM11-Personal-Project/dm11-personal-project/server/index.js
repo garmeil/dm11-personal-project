@@ -15,6 +15,7 @@ const createInitialSession = require("./middleware/session");
 const port = 3007;
 
 const app = express();
+app.use(express.static(`${__dirname}/../build`));
 const {
   getProducts,
   getProductsByCategory
@@ -113,20 +114,20 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/#/",
-    failureRedirect: "http://localhost:3000/#/login"
+    successRedirect: "http://localhost:3007/#/",
+    failureRedirect: process.env.REDIRECT_URIS
   })
 );
 
 app.get("/api/logout", (req, res) => {
   req.session.destroy(() => {
-    res.redirect("http://localhost:3000/#/login");
+    res.redirect(process.env.REDIRECT_URIS);
   });
 });
 
 app.get("/api/me", (req, res) => {
   if (req.user) res.status(200).json(req.user);
-  else res.redirect("http://localhost:3000/#/login");
+  else res.redirect(process.env.REDIRECT_URIS);
 });
 
 app.get("/api/test", (req, res, next) => {
@@ -161,5 +162,10 @@ app.get("/api/user", (req, res, next) => {
   console.log(req.session.user);
 });
 app.put("/api/edit", updateUserInfo);
+
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(port, () => console.log(`Now Listening on Port: ${port}`));

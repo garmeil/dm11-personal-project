@@ -13,7 +13,9 @@ function ProductCard(props) {
         <div className="pcImgBox">
           <img src={p.imgurl} className="cardImg" />
         </div>
-        <h3>{p.name}</h3>
+        <h3>
+          {p.name} x{p.quantity}
+        </h3>
         <p className="pcDescription">{p.description}</p>
       </div>
       <div className="flex center addButton">

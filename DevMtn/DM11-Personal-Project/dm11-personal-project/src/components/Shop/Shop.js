@@ -7,6 +7,7 @@ import { BeatLoader } from "react-spinners";
 import RaisedButton from "material-ui/RaisedButton";
 import "../subcomponents/ProductCard/ProductCard.css";
 import TextField from "material-ui/TextField";
+import Card2Point0 from "../subcomponents/ProductCard/Card2Point0";
 
 class Shop extends React.Component {
   constructor() {
@@ -41,7 +42,7 @@ class Shop extends React.Component {
     let cardReel =
       this.props.products.length > 0 ? (
         this.props.products.map((val, index) => {
-          return <ProductCard product={val} key={index} />;
+          return <Card2Point0 product={val} key={index} />;
         })
       ) : (
         <BeatLoader color="#36D7B7" />

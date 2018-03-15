@@ -18,10 +18,8 @@ class AccountPage extends React.Component {
   componentDidMount() {
     this.props.getUser().then(response => {
       if (this.props.user.admin) {
-        console.log("This dot Props dot User dot Admin is True");
         this.props.getOrders();
       } else {
-        console.log("User Orders Got");
         this.props.getUserOrders(this.props.user.id);
       }
     });
@@ -40,7 +38,6 @@ class AccountPage extends React.Component {
     return (
       <div>
         <h1>{`Hello, ${this.props.user.full_name}`}</h1>
-        <button onClick={() => console.log(this.props.user)} />
 
         <Logout />
         <AccountInfo />

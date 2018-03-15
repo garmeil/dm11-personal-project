@@ -9,7 +9,6 @@ p {
   margin: 0;
   padding: 0;
 }
-
 .ProductCard {
   display: flex;
   flex-direction: column;
@@ -48,6 +47,15 @@ p {
 .ProductCard h3 {
   margin-top: 0px;
 }
+.Card {
+  width: 300px;
+  height: 630px;
+  margin: 4px;
+}
+.Card2Point0 img {
+  width: 400px;
+}
+
 @media (max-width: 600px) {
   .cardImg {
     height: 100%;
@@ -63,5 +71,18 @@ p {
     -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
     border-radius: 3px;
+  }
+  .Card {
+    width: 200px;
+    height: 415px;
+  }
+  .CardHeader {
+    display: none;
+  }
+  .CardTitle {
+    display: none;
+  }
+  .OverlayTitle {
+    height: 73px;
   }
 }

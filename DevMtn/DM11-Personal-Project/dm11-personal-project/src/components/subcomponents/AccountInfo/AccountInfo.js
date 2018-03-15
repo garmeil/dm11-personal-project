@@ -110,6 +110,10 @@ class AccountInfo extends React.Component {
           <RaisedButton
             label="Save Changes"
             style={{ margin: 12, alignSelf: "center" }}
+            onClick={() =>
+              // prettier-ignore
+              this.handleClick(this.state)
+            }
           />
         </div>
       </div>
