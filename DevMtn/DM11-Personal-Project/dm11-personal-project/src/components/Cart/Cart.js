@@ -7,6 +7,8 @@ import axios from "axios";
 import "../subcomponents/ProductCard/CartDiv.css";
 import _ from "lodash";
 import { withRouter } from "react-router-dom";
+import swal from "sweetalert";
+import RaisedButton from "material-ui/RaisedButton";
 
 class Cart extends React.Component {
   constructor() {
@@ -23,7 +25,12 @@ class Cart extends React.Component {
     return Math.round(number * factor) / factor;
   }
   handleClick() {
-    this.props.getCart();
+    if (this.props.cart && this.props.cart.length > 0) {
+      window.location.href = "/#/ordersubmitted";
+      this.props.getCart();
+    } else {
+      swal({ text: "Put something in your cart" });
+    }
   }
 
   render() {
@@ -53,6 +60,11 @@ class Cart extends React.Component {
           description={"Green"}
           amount={this.precisionRound(this.props.total * 1.0875, 2) || 1}
           onClick={this.handleClick}
+        />
+        <RaisedButton
+          onClick={this.handleClick}
+          label="Checkout"
+          primary={true}
         />
         <div>{cartBasket}</div>
       </div>
