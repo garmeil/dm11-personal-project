@@ -12,7 +12,7 @@ const configureServer = require("./server");
 const configureRoutes = require("./routes");
 const createInitialSession = require("./middleware/session");
 
-const port = 3007;
+const port = process.env.PORT || 3007;
 
 const app = express();
 app.use(express.static(`${__dirname}/../build`));
