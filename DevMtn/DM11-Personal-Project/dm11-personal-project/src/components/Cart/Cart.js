@@ -54,18 +54,21 @@ class Cart extends React.Component {
     return (
       <div>
         <h1>Total: ${this.precisionRound(this.props.total, 2) || "0"} </h1>
-        <Checkout
-          handleClick={this.handleClick}
-          name={"Sown Seeds"}
-          description={"Green"}
-          amount={this.precisionRound(this.props.total * 1.0875, 2) || 1}
-          onClick={this.handleClick}
-        />
-        <RaisedButton
-          onClick={this.handleClick}
-          label="Checkout"
-          primary={true}
-        />
+        <div className="flex column">
+          <Checkout
+            handleClick={this.handleClick}
+            name={"Sown Seeds"}
+            description={"Green"}
+            amount={this.precisionRound(this.props.total * 1.0875, 2) || 1}
+            onClick={this.handleClick}
+          />
+          <RaisedButton
+            onClick={this.handleClick}
+            label="Checkout"
+            primary={true}
+            className="LittleMargin"
+          />
+        </div>
         <div>{cartBasket}</div>
       </div>
     );
