@@ -149,11 +149,11 @@ class AccountInfo extends React.Component {
             label="Delete Account"
             secondary={true}
             style={{ margin: 12, alignSelf: "center" }}
-            onClick={() =>
-              if(window.confirm("Do you really want to delete you account?")){
-              this.deleteClick(this.props.user.id)
+            onClick={() => {
+              if (window.confirm("Do you really want to delete you account?")) {
+                this.deleteClick(this.props.user.id);
               }
-            }
+            }}
           />
         </div>
       </div>
