@@ -9,9 +9,8 @@
 # production
 /build
 .env
-./src/server
-./server/constants
-./src/constants
+/server/constants
+/src/constants
 
 # misc
 .DS_Store

@@ -43,7 +43,7 @@ function Checkout({ name, description, amount, onClick }) {
       amount={fromUsdToCent(amount)}
       token={onToken(amount, description, onClick)}
       currency={CURRENCY}
-      stripeKey={STRIPE_PUBLISHABLE}
+      stripeKey={process.env.STRIPE_PUBLISHABLE}
     />
   );
 }

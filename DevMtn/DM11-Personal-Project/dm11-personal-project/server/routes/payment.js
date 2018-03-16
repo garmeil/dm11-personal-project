@@ -4,7 +4,7 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
   if (stripeErr) {
     res.status(500).send({ error: stripeErr });
   } else {
-    res.redirect(200, "http://localhost:3007/#/");
+    res.redirect(200, "http://159.89.50.175:3007/#/");
   }
 };
 
