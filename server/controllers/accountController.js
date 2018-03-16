@@ -13,10 +13,13 @@ module.exports = {
         req.user.id
       )
       .then(response => {
-        req.app.get("db").getUserById(req.user.id).then(response => {
-          req.user = response
-          res.status(200).send(req.user);
-        })
+        req.app
+          .get("db")
+          .getUserById(req.user.id)
+          .then(response => {
+            req.user = response;
+            res.status(200).send(req.user);
+          });
       })
       .catch(console.log);
   },
@@ -26,7 +29,8 @@ module.exports = {
       .deleteUser(req.params.id)
       .then(response => {
         req.session.destroy(() => {
-          res.redirect(`${process.env.REDIRECT_URIS}`)
+          res.redirect(`${process.env.REDIRECT_URIS}`);
         });
+      });
   }
 };
