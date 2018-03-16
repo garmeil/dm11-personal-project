@@ -54,7 +54,7 @@ class Cart extends React.Component {
     return (
       <div>
         <h1>Total: ${this.precisionRound(this.props.total, 2) || "0"} </h1>
-        <div className="flex column">
+        <div className="flex column center">
           <Checkout
             handleClick={this.handleClick}
             name={"Sown Seeds"}
