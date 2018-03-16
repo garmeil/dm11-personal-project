@@ -6,7 +6,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import IconButton from "material-ui/IconButton";
 import ActionSave from "material-ui/svg-icons/content/save";
-import DeleteAll from "material-ui/svg-icons/content/delete-all";
+import DeleteAll from "material-ui/svg-icons/content/delete-forever";
 import RaisedButton from "material-ui/RaisedButton";
 
 class AccountInfo extends React.Component {
