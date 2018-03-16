@@ -7,7 +7,8 @@ module.exports = {
         req.session.user.cart.push(response[0]);
         req.session.user.total += response[0].price;
         res.status(200).send(req.session.user);
-      });
+      })
+      .catch(err => console.log(err));
   },
   readFromCart: (req, res, next) => {
     res.status(200).send(req.session.user);

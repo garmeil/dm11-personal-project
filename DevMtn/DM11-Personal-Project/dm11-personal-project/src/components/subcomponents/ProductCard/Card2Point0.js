@@ -47,7 +47,7 @@ function Card2Point0(props) {
               //   icon: "success",
               //   button: "Aww yiss!"
               // });
-              if (typeof props.user.id === "number")
+              if (props.user && typeof props.user.id === "number")
                 axios.post(`/api/cart/${p.id}`);
               else {
                 swal({

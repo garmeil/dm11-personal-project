@@ -154,7 +154,7 @@ app.get("/api/checkout", checkOut);
 
 //ORDER ENDPOINTS
 app.get("/api/orders", getOrders);
-app.get("/api/orders/:id", getOrderById);
+app.get("/api/orders/:id", gfsdetOrderById);
 app.get("/api/userOrders/:id", getOrderByUser);
 
 //ACCOUNT ENDPOINTS

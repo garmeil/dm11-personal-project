@@ -42,7 +42,9 @@ class Shop extends React.Component {
     let cardReel =
       this.props.products.length > 0 ? (
         this.props.products.map((val, index) => {
-          return <Card2Point0 product={val} key={index} />;
+          return (
+            <Card2Point0 user={this.props.user} product={val} key={index} />
+          );
         })
       ) : (
         <BeatLoader color="#36D7B7" />
