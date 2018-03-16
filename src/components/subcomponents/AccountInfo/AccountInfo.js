@@ -34,9 +34,10 @@ class AccountInfo extends React.Component {
     );
   }
   handleClick(body) {
-    this.props
-      .editUserInfo(body)
-      .then(response => swal({ title: "Good job!", text: "Profile Updated!" }));
+    this.props.editUserInfo(body).then(response => {
+      swal({ title: "Good job!", text: "Profile Updated!" });
+      this.props.getUser();
+    });
   }
   render() {
     return (
