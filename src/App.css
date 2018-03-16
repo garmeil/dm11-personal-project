@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css?family=Mukta+Malar:400,700|Roboto:300,500");
+.App {
+  text-align: center;
+  font-family: "Mukta Malar";
+  color: #1f583f;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+}
+link {
+  text-decoration: none;
+}
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #c7f3eb;
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  position: sticky;
+  z-index: 100;
+  width: 100%;
+}
+header h1 {
+  color: #1f583f;
+  font-weight: 700;
+}
+#Hamburger {
+  display: none;
+  min-width: 70px;
+}
+.NavLinks {
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+.Nav-Item:not(#Hamburger) {
+  padding: 0px 20px;
+  margin-bottom: 17px;
+}
+.Nav-Item {
+  font-weight: bold;
+  height: auto;
+  color: #1f583f;
+}
+.active1 {
+  color: #7ed483;
+}
+.Header-Logo {
+  height: 40px;
+  width: 40px;
+}
+.Home {
+  height: 100vh;
+  opacity: 0.25;
+  background-image: url("./imgs/francesco-gallarotti-72602-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.Home img {
+  max-height: 300px;
+  max-width: 400px;
+}
+.Home .Card {
+  width: 300px;
+}
+.Shop {
+}
+.BackgroundImg {
+  width: 100%;
+  z-index: -1;
+}
+.App-title {
+  font-size: 1.5em;
+}
+
+.ContactUs {
+  margin-top: 10px;
+  margin-left: 37px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.ContactUs h3 {
+  align-self: center;
+  margin-left: -37px;
+}
+.ContactUs button {
+  align-self: center;
+  margin-left: -37px;
+  margin-top: 10px;
+}
+.App-intro {
+  font-size: large;
+}
+.flex {
+  display: flex;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.column {
+  flex-direction: column;
+}
+
+.LittleMargin {
+  margin: 15px;
+}
+.topnav {
+  display: flex;
+}
+.Gallery {
+  flex-flow: row wrap;
+  flex-shrink: 0;
+}
+.space-between {
+  justify-content: space-between;
+}
+.AInfo {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+}
+.AccountInfo {
+  display: flex;
+  flex-flow: column;
+
+  margin-left: 15px;
+  margin-bottom: 45px;
+  border: 1px black solid;
+  flex-shrink: 1;
+  padding-left: 22px;
+  padding-bottom: 13px;
+}
+
+.SaveChangesMobi {
+  display: none;
+}
+.AccountInfo h5 {
+  margin: 7px;
+}
+@media (max-width: 600px) {
+  header {
+    justify-content: space-between;
+    height: 60px;
+  }
+  .Header-Logo {
+    margin-left: 10px;
+  }
+  .SaveChangesMobi {
+    display: block;
+  }
+  .SaveChangesDsktp {
+    display: none;
+  }
+  .active1 {
+    color: #c7f3eb;
+  }
+  .NavLinks {
+  }
+  .topnav #Hamburger {
+    display: flex;
+    align-self: flex-end;
+  }
+  .topnav .Nav-Item {
+    display: none;
+    padding: 9px 0;
+  }
+  .topnav .Nav-Item.active1 {
+    background: #6cad9c;
+  }
+  .topnav.responsive .Nav-Item {
+    display: flex;
+  }
+  .topnav {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    flex-direction: column;
+    background: #c7f3eb;
+    z-index: 101;
+    width: 100px;
+    border: 2px black solid;
+  }
+}

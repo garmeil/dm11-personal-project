@@ -1,0 +1,88 @@
+.cardImg {
+  height: 100%;
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 3px;
+}
+p {
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+}
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  color: #1f583f;
+  height: 400px;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 3px;
+  flex-basis: 200px;
+}
+.buttonBar {
+  position: sticky;
+  z-index: 1;
+}
+.pcImgBox {
+  width: 95%;
+  display: flex;
+  padding-bottom: 10px;
+  border-bottom: 1.5px #9af3ac dashed;
+}
+.addButton {
+  align-items: space-between !important;
+}
+.pcDescription {
+  height: auto;
+  color: #1f583f;
+  width: 95%;
+  background: #9af3ac;
+  border-radius: 2px;
+  border: 1px #1f583f solid;
+}
+.ProductCard h3 {
+  margin-top: 0px;
+}
+.Card {
+  width: 300px;
+  height: 630px;
+  margin: 4px;
+}
+.Card2Point0 img {
+  width: 400px;
+}
+
+@media (max-width: 600px) {
+  .cardImg {
+    height: 100%;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 3px;
+  }
+  .ProductCard {
+    margin: 10px;
+    flex-basis: 340px;
+    height: 500px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 3px;
+  }
+  .Card {
+    width: 200px;
+    height: 415px;
+  }
+  .CardHeader {
+    display: none;
+  }
+  .CardTitle {
+    display: none;
+  }
+  .OverlayTitle {
+    height: 73px;
+  }
+}

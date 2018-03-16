@@ -1,0 +1,126 @@
+import React from "react";
+import { connect } from "react-redux";
+import { getUser, editUserInfo } from "../../../ducks/reducer.js";
+import TextField from "material-ui/TextField";
+import axios from "axios";
+import swal from "sweetalert";
+import IconButton from "material-ui/IconButton";
+import ActionSave from "material-ui/svg-icons/content/save";
+import RaisedButton from "material-ui/RaisedButton";
+
+class AccountInfo extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      full_name: "",
+      email: "",
+      address: "",
+      city: "",
+      state: "",
+      zipcode: 0
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentDidMount() {
+    this.props.getUser().then(response =>
+      this.setState({
+        full_name: this.props.user.full_name,
+        email: this.props.user.email,
+        address: this.props.user.address,
+        city: this.props.user.city,
+        state: this.props.user.state,
+        zipcode: this.props.user.zipcode
+      })
+    );
+  }
+  handleClick(body) {
+    this.props
+      .editUserInfo(body)
+      .then(response => swal({ title: "Good job!", text: "Profile Updated!" }));
+  }
+  render() {
+    return (
+      <div className="AccountInfo">
+        <div className="AInfo">
+          <h2>Account Info</h2>
+
+          <div className="SaveChangesMobi">
+            <IconButton
+              onClick={() =>
+                // prettier-ignore
+                this.handleClick(this.state)
+              }
+              tooltip="Save Changes"
+              touch={true}
+              tooltipPosition="top-left"
+            >
+              <ActionSave />
+            </IconButton>
+          </div>
+        </div>
+        <div className="flex">
+          <h3>Name: </h3>
+          <TextField
+            id="account-name-input"
+            defaultValue={this.props.user.full_name}
+            onChange={e => this.setState({ full_name: e.target.value })}
+          />
+        </div>
+        <div className="flex emailinfo">
+          <h3>Email: </h3>
+          <TextField
+            id="text-field-default"
+            defaultValue={this.props.user.email}
+            onChange={e => this.setState({ email: e.target.value })}
+          />
+        </div>
+        <div className="flex adressinfo">
+          <h3>Address: </h3>
+          <TextField
+            id="text-field-default"
+            defaultValue={this.props.user.address}
+            onChange={e => this.setState({ address: e.target.value })}
+          />
+        </div>
+        <div className="flex cityinfo">
+          <h3>City: </h3>
+          <TextField
+            id="text-field-default"
+            defaultValue={this.props.user.city}
+            onChange={e => this.setState({ city: e.target.value })}
+          />
+        </div>
+        <div className="flex stateinfo">
+          <h3>State: </h3>
+          <TextField
+            id="text-field-default"
+            defaultValue={this.props.user.state}
+            onChange={e => this.setState({ state: e.target.value })}
+          />
+        </div>
+        <div className="flex zipcodeinfo">
+          <h3>Zipcode: </h3>
+          <TextField
+            id="text-field-default"
+            defaultValue={this.props.user.zipcode}
+            onChange={e => this.setState({ zipcode: e.target.value })}
+          />
+        </div>
+        <div className="SaveChangesDsktp">
+          <RaisedButton
+            label="Save Changes"
+            style={{ margin: 12, alignSelf: "center" }}
+            onClick={() =>
+              // prettier-ignore
+              this.handleClick(this.state)
+            }
+          />
+        </div>
+      </div>
+    );
+  }
+}
+function mapStateToProps(state) {
+  return state;
+}
+export default connect(mapStateToProps, { getUser, editUserInfo })(AccountInfo);
