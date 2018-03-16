@@ -32,7 +32,10 @@ const {
   getOrderById,
   getOrderByUser
 } = require("./controllers/orderController");
-const { updateUserInfo } = require("./controllers/accountController");
+const {
+  updateUserInfo,
+  deleteUser
+} = require("./controllers/accountController");
 
 massive(process.env.CONNECTION_STRING)
   .then(dbInstance => {
@@ -162,6 +165,7 @@ app.get("/api/user", (req, res, next) => {
   console.log(req.session.user);
 });
 app.put("/api/edit", updateUserInfo);
+app.delete("/api/deleteUser", deleteUser);
 
 const path = require("path");
 app.get("*", (req, res) => {

@@ -16,5 +16,14 @@ module.exports = {
         res.status(200).send(req.user);
       })
       .catch(console.log);
+  },
+  deleteUser: (req, res, next) => {
+    req.app
+      .get("db")
+      .deleteUser(req.params.id)
+      .then(response => {
+        req.session.destroy(() => {
+          res.redirect("http://159.89.50.175/#/login")
+        });
   }
 };

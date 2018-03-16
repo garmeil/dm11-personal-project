@@ -6,6 +6,7 @@ import axios from "axios";
 import swal from "sweetalert";
 import IconButton from "material-ui/IconButton";
 import ActionSave from "material-ui/svg-icons/content/save";
+import DeleteAll from "material-ui/svg-icons/content/delete-all";
 import RaisedButton from "material-ui/RaisedButton";
 
 class AccountInfo extends React.Component {
@@ -20,6 +21,7 @@ class AccountInfo extends React.Component {
       zipcode: 0
     };
     this.handleClick = this.handleClick.bind(this);
+    this.deleteClick = this.deleteClick.bind(this);
   }
   componentDidMount() {
     this.props.getUser().then(response =>
@@ -36,8 +38,22 @@ class AccountInfo extends React.Component {
   handleClick(body) {
     this.props.editUserInfo(body).then(response => {
       swal({ title: "Good job!", text: "Profile Updated!" });
-      this.props.getUser();
+      this.props.getUser().then(response =>
+        this.setState({
+          full_name: this.props.user.full_name,
+          email: this.props.user.email,
+          address: this.props.user.address,
+          city: this.props.user.city,
+          state: this.props.user.state,
+          zipcode: this.props.user.zipcode
+        })
+      );
     });
+  }
+  deleteClick(id) {
+    axios
+      .delete("/api/deleteUser")
+      .then(response => props.getUser().then(props.history.push("/login")));
   }
   render() {
     return (
@@ -56,6 +72,17 @@ class AccountInfo extends React.Component {
               tooltipPosition="top-left"
             >
               <ActionSave />
+            </IconButton>
+            <IconButton
+              onClick={() =>
+                // prettier-ignore
+                swal({text: "Delete account?"})
+              }
+              tooltip="Save Changes"
+              touch={true}
+              tooltipPosition="top-left"
+            >
+              <DeleteAll />
             </IconButton>
           </div>
         </div>
@@ -110,10 +137,22 @@ class AccountInfo extends React.Component {
         <div className="SaveChangesDsktp">
           <RaisedButton
             label="Save Changes"
+            primary={true}
             style={{ margin: 12, alignSelf: "center" }}
             onClick={() =>
               // prettier-ignore
               this.handleClick(this.state)
+            }
+          />
+
+          <RaisedButton
+            label="Delete Account"
+            secondary={true}
+            style={{ margin: 12, alignSelf: "center" }}
+            onClick={() =>
+              if(window.confirm("Do you really want to delete you account?")){
+              this.deleteClick(this.props.user.id)
+              }
             }
           />
         </div>
