@@ -52,7 +52,9 @@ class AccountInfo extends React.Component {
   deleteClick(id) {
     axios
       .delete("/api/deleteUser")
-      .then(response => props.getUser().then(props.history.push("/login")));
+      .then(response =>
+        this.props.getUser().then(props.history.push("/login"))
+      );
   }
   render() {
     return (
