@@ -11,7 +11,7 @@ class Auth extends React.Component {
   render() {
     return (
       <div>
-        {!this.props.user.full_name ? (
+        {this.props.user && !this.props.user.full_name ? (
           <Link
             to="/login"
             className="Nav-Item"
