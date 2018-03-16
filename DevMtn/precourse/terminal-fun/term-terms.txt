@@ -1,9 +1,0 @@
-pwd - Shows your present working directory.
-cd - Changes your directory, or folder, back to your home folder.
-cd .. - Changes directory up one directory.
-cd <em>nameOfDirectory</em> - Changes to the desired child directory.
-ls - Shows the contents of the current directory
-mkdir nameOfNewDirectory - Creates a new directory, or folder.
-touch nameOfNewFile.appropriateFileEnding - Creates a new file.
-rm - Removes a file/folder permanently.
-rm -rf - Removes a file/folder and all of its content permanently.

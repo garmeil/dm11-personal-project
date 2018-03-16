@@ -1,4 +1,0 @@
-1. Make changes to file(s)
-2. git add . OR git add specificFileName
-3. git commit -m 'commit specific message'
-4. git push

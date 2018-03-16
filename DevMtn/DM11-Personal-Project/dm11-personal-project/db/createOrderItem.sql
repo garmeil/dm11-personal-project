@@ -1,1 +1,0 @@
-INSERT INTO order_items (orderid, productid) VALUES ( $1, $2);
