@@ -117,20 +117,20 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://159.89.50.175/#/",
-    failureRedirect: "http://159.89.50.175/#/login"
+    successRedirect: `${process.env.REDIRECT_URIS}`,
+    failureRedirect: `${process.env.REDIRECT_URIS}`
   })
 );
 
 app.get("/api/logout", (req, res) => {
   req.session.destroy(() => {
-    res.redirect("http://159.89.50.175/#/login");
+    res.redirect(`${process.env.REDIRECT_URIS}`);
   });
 });
 
 app.get("/api/me", (req, res) => {
   if (req.user) res.status(200).json(req.user);
-  else res.redirect("http://159.89.50.175/#/login");
+  else res.redirect(`${process.env.REDIRECT_URIS}`);
 });
 
 app.get("/api/test", (req, res, next) => {

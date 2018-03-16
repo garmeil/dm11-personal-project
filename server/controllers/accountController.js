@@ -23,7 +23,7 @@ module.exports = {
       .deleteUser(req.params.id)
       .then(response => {
         req.session.destroy(() => {
-          res.redirect("http://159.89.50.175/#/login")
+          res.redirect(`${process.env.REDIRECT_URIS}`)
         });
   }
 };

@@ -5,7 +5,7 @@ import TextField from "material-ui/TextField";
 import axios from "axios";
 import swal from "sweetalert";
 import IconButton from "material-ui/IconButton";
-import ActionSave from "material-ui/svg-icons/content/save";=
+import ActionSave from "material-ui/svg-icons/content/save";
 import RaisedButton from "material-ui/RaisedButton";
 
 class AccountInfo extends React.Component {
@@ -72,7 +72,6 @@ class AccountInfo extends React.Component {
             >
               <ActionSave />
             </IconButton>
-            
           </div>
         </div>
         <div className="flex">
