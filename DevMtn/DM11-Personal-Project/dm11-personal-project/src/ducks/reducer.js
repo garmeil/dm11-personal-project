@@ -18,7 +18,7 @@ export function getProducts(param) {
       .then(response => {
         return response.data;
       })
-      .catch(console.log)
+      .catch(() => [])
   };
 }
 export function searchProductsName(category, query) {
@@ -31,7 +31,7 @@ export function searchProductsName(category, query) {
           return val.name.toLowerCase().includes(query.toLowerCase());
         });
       })
-      .catch(console.log)
+      .catch(() => [])
   };
 }
 export function getCart() {
@@ -42,7 +42,7 @@ export function getCart() {
       .then(response => {
         return response.data;
       })
-      .catch(console.log)
+      .catch(() => [])
   };
 }
 export function clearCart() {
@@ -53,7 +53,7 @@ export function clearCart() {
       .then(response => {
         return response.data;
       })
-      .catch(console.log)
+      .catch(() => [])
   };
 }
 export function getUser() {
@@ -64,7 +64,7 @@ export function getUser() {
       .then(response => {
         return response.data;
       })
-      .catch(console.log)
+      .catch(() => ({}))
   };
 }
 export function getOrders(criteria) {
@@ -73,7 +73,7 @@ export function getOrders(criteria) {
     payload: axios
       .get(`/api/orders${criteria ? "/" + criteria : ""}`)
       .then(response => response.data)
-      .catch(console.log)
+      .catch(() => [])
   };
 }
 export function getUserOrders(uid) {
@@ -82,7 +82,7 @@ export function getUserOrders(uid) {
     payload: axios
       .get(`/api/userOrders/${uid}`)
       .then(response => response.data)
-      .catch(console.log)
+      .catch(() => [])
   };
 }
 export function checkOut() {
@@ -94,20 +94,19 @@ export function checkOut() {
         console.log(response.data);
         return response.data;
       })
-      .catch(console.log)
+      .catch(() => ({}))
   };
 }
 export function editUserInfo(body) {
   return {
-    type: EDIT_USER_INFO,
-    //body must be an object
+    type: EDIT_USER_INFO, //body must be an object
     payload: axios
       .put("/api/edit", body)
       .then(response => {
         console.log(response.data);
         return response.data;
       })
-      .catch(console.log)
+      .catch(() => ({}))
   };
 }
 
