@@ -4,7 +4,7 @@ module.exports = {
       .get("db")
       .getOrders()
       .then(response => res.status(200).send(response))
-      .catch(console.log);
+      .catch(err => console.log(err));
   },
   getOrderById: (req, res, next) => {
     req.app

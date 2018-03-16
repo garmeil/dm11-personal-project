@@ -5,7 +5,7 @@ function getProducts(req, res, next) {
     .then(response => {
       return res.status(200).json(response);
     })
-    .catch(console.log);
+    .catch(err => console.log(err));
 }
 function getProductsByCategory(req, res, next) {
   if (req.params.category === "all") {
