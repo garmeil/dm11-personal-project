@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUser, editUserInfo } from "../../../ducks/reducer.js";
+import { getUser, editUserInfo, deleteUser } from "../../../ducks/reducer.js";
 import TextField from "material-ui/TextField";
 import axios from "axios";
 import swal from "sweetalert";
 import IconButton from "material-ui/IconButton";
 import ActionSave from "material-ui/svg-icons/content/save";
 import RaisedButton from "material-ui/RaisedButton";
+import { withRouter } from "react-router";
 
 class AccountInfo extends React.Component {
   constructor() {
@@ -37,29 +38,30 @@ class AccountInfo extends React.Component {
   handleClick(body) {
     this.props.editUserInfo(body).then(response => {
       swal({ title: "Good job!", text: "Profile Updated!" });
-      this.props.getUser().then(response =>
-        this.setState({
-          full_name: this.props.user.full_name,
-          email: this.props.user.email,
-          address: this.props.user.address,
-          city: this.props.user.city,
-          state: this.props.user.state,
-          zipcode: this.props.user.zipcode
-        })
-      );
+      this.props.getUser();
+      // .then(response =>
+      //   this.setState({
+      //     full_name: this.props.user.full_name,
+      //     email: this.props.user.email,
+      //     address: this.props.user.address,
+      //     city: this.props.user.city,
+      //     state: this.props.user.state,
+      //     zipcode: this.props.user.zipcode
+      //   })
+      // );
     });
   }
   deleteClick(id) {
-    axios
-      .delete("/api/deleteUser")
-      .then(response =>
-        this.props.getUser().then(this.props.history.push("/login"))
-      );
+    this.props.deleteUser(id).then(response => {
+      this.props.history.push("/login");
+      this.props.getUser();
+    });
   }
   render() {
     return (
       <div className="AccountInfo">
         <div className="AInfo">
+          <button onClick={() => console.log(this.props.getUser())} />
           <h2>Account Info</h2>
 
           <div className="SaveChangesMobi">
@@ -141,6 +143,7 @@ class AccountInfo extends React.Component {
             style={{ margin: 12, alignSelf: "center" }}
             onClick={() => {
               if (window.confirm("Do you really want to delete you account?")) {
+                console.log(this.props.user);
                 this.deleteClick(this.props.user.id);
               }
             }}
@@ -153,4 +156,6 @@ class AccountInfo extends React.Component {
 function mapStateToProps(state) {
   return state;
 }
-export default connect(mapStateToProps, { getUser, editUserInfo })(AccountInfo);
+export default withRouter(
+  connect(mapStateToProps, { getUser, editUserInfo, deleteUser })(AccountInfo)
+);

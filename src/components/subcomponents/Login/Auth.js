@@ -8,9 +8,11 @@ class Auth extends React.Component {
   componentDidMount() {
     this.props.getUser();
   }
+  componentWillReceiveProps() {}
   render() {
     return (
       <div>
+        {console.log(this.props)}
         {this.props.user && !this.props.user.full_name ? (
           <Link
             to="/login"

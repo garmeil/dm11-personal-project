@@ -13,7 +13,11 @@ function Logout(props) {
         swal("Successfully Logged Out");
         axios
           .get("/api/logout")
-          .then(response => props.getUser().then(props.history.push("/login")));
+          .then(response => {
+            console.log("/logged out");
+            props.getUser().then(props.history.push("/login"));
+          })
+          .catch(err => console.log(err));
       }}
       className="LittleMargin"
       backgroundColor="#C7F3EB"

@@ -117,7 +117,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: `${process.env.REDIRECT_URIS}`,
+    successRedirect: `${process.env.REDIRECT_SUCCESS}`,
     failureRedirect: `${process.env.REDIRECT_URIS}`
   })
 );
@@ -165,7 +165,7 @@ app.get("/api/user", (req, res, next) => {
   console.log(req.session.user);
 });
 app.put("/api/edit", updateUserInfo);
-app.delete("/api/deleteUser", deleteUser);
+app.delete("/api/deleteUser/:id", deleteUser);
 
 const path = require("path");
 app.get("*", (req, res) => {

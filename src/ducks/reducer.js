@@ -9,6 +9,7 @@ const GET_ORDERS = "GET_ORDERS";
 const GET_USER_ORDERS = "GET_USER_ORDERS";
 const CHECKOUT = "CHECKOUT";
 const EDIT_USER_INFO = "EDIT_USER_INFO";
+const DELETE_USER = "DELETE_USER";
 
 export function getProducts(param) {
   return {
@@ -109,6 +110,12 @@ export function editUserInfo(body) {
       .catch(() => ({}))
   };
 }
+export function deleteUser(id) {
+  return {
+    type: DELETE_USER,
+    payload: axios.delete(`/api/deleteUser/${id}`).catch(() => ({}))
+  };
+}
 
 const initialState = {
   products: [],
@@ -133,6 +140,17 @@ export default function reducer(state = initialState, action) {
         products: action.payload
       });
     case `${SEARCH_PRODUCTS_NAME}_REJECTED`:
+      console.log("rejected");
+      return Object.assign({}, state, { isLoading: false, didErr: true });
+    case `${DELETE_USER}_PENDING`:
+      console.log("pending");
+      return Object.assign({}, state, { isLoading: true });
+    case `${DELETE_USER}_FULFILLED`:
+      console.log(action.payload);
+      return Object.assign({}, state, {
+        isLoading: false
+      });
+    case `${DELETE_USER}_REJECTED`:
       console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_USER}_PENDING`:
