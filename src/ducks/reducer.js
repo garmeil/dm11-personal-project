@@ -104,7 +104,6 @@ export function editUserInfo(body) {
     payload: axios
       .put("/api/edit", body)
       .then(response => {
-        console.log(response.data);
         return response.data;
       })
       .catch(() => ({}))
@@ -131,113 +130,86 @@ const initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case `${SEARCH_PRODUCTS_NAME}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${SEARCH_PRODUCTS_NAME}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         products: action.payload
       });
     case `${SEARCH_PRODUCTS_NAME}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${DELETE_USER}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${DELETE_USER}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false
       });
     case `${DELETE_USER}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_USER}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${GET_USER}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         user: action.payload
       });
     case `${GET_USER}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${EDIT_USER_INFO}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${EDIT_USER_INFO}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         //user must be given req.user via backend
         user: action.payload
       });
     case `${EDIT_USER_INFO}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${CHECKOUT}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${CHECKOUT}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         currentOrder: action.payload
       });
     case `${CHECKOUT}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_USER_ORDERS}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${GET_USER_ORDERS}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         orders: action.payload
       });
     case `${GET_USER_ORDERS}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_ORDERS}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${GET_ORDERS}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         orders: action.payload
       });
     case `${GET_ORDERS}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_PRODUCTS}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${GET_PRODUCTS}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         products: action.payload
       });
     case `${GET_PRODUCTS}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
     case `${GET_CART}_PENDING`:
-      console.log("pending");
       return Object.assign({}, state, { isLoading: true });
     case `${GET_CART}_FULFILLED`:
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         cart: action.payload.cart,
         total: action.payload.total
       });
     case `${GET_CART}_REJECTED`:
-      console.log("rejected");
       return Object.assign({}, state, { isLoading: false, didErr: true });
 
     default:

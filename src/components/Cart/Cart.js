@@ -26,7 +26,7 @@ class Cart extends React.Component {
   }
   handleClick() {
     if (this.props.cart && this.props.cart.length > 0) {
-      window.location.href = "/#/ordersubmitted";
+      this.props.getCart();
     } else {
       swal({ text: "Put something in your cart" });
     }
