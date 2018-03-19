@@ -61,7 +61,6 @@ class AccountInfo extends React.Component {
     return (
       <div className="AccountInfo">
         <div className="AInfo">
-          <button onClick={() => console.log(this.props.getUser())} />
           <h2>Account Info</h2>
 
           <div className="SaveChangesMobi">

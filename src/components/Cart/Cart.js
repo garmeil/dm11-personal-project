@@ -27,7 +27,6 @@ class Cart extends React.Component {
   handleClick() {
     if (this.props.cart && this.props.cart.length > 0) {
       window.location.href = "/#/ordersubmitted";
-      this.props.getCart();
     } else {
       swal({ text: "Put something in your cart" });
     }
@@ -62,12 +61,16 @@ class Cart extends React.Component {
             amount={this.precisionRound(this.props.total * 1.0875, 2) || 1}
             onClick={this.handleClick}
           />
-          <RaisedButton
-            onClick={this.handleClick}
-            label="Checkout"
-            primary={true}
-            className="LittleMargin"
-          />
+          {process.env.NODE_ENV === "production" ? (
+            <RaisedButton
+              onClick={this.handleClick}
+              label="Checkout"
+              primary={true}
+              className="LittleMargin"
+            />
+          ) : (
+            ""
+          )}
         </div>
         <div>{cartBasket}</div>
       </div>

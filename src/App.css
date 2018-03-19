@@ -186,5 +186,6 @@ header h1 {
     z-index: 101;
     width: 100px;
     border: 2px black solid;
+    border-radius: 2px;
   }
 }

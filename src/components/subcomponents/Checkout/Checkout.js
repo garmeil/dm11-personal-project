@@ -30,7 +30,6 @@ const onToken = (amount, description, onClick) => token =>
     .then(() => {
       // this.props.history.push("/ordersubmitted")
       successPayment();
-      window.location.href = "/#/ordersubmitted";
       onClick();
     })
     .catch(errorPayment);
