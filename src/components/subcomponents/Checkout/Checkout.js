@@ -36,7 +36,7 @@ const onToken = (amount, description, onClick, redirect) => token =>
     })
     .catch(errorPayment);
 
-function Checkout({ name, description, amount, onClick }) {
+function Checkout({ name, description, amount, onClick, redirect }) {
   return (
     <StripeCheckout
       name={name}
