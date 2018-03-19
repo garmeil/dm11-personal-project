@@ -15,7 +15,7 @@ const createInitialSession = require("./middleware/session");
 const port = process.env.PORT || 3007;
 
 const app = express();
-// app.use(express.static(`${__dirname}/../build`));
+app.use(express.static(`${__dirname}/../build`));
 const {
   getProducts,
   getProductsByCategory
@@ -117,7 +117,7 @@ passport.deserializeUser((user, done) => done(null, user));
 app.get(
   "/login",
   passport.authenticate("auth0", {
-    successRedirect: `${process.env.REDIRECT_SUCCESS}`,
+    successRedirect: `${process.env.REDIRECT_SUCCESS}/#/`,
     failureRedirect: `${process.env.REDIRECT_URIS}`
   })
 );
@@ -167,9 +167,9 @@ app.get("/api/user", (req, res, next) => {
 app.put("/api/edit", updateUserInfo);
 app.delete("/api/deleteUser/:id", deleteUser);
 
-// const path = require("path");
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "../build/index.html"));
-// });
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 
 app.listen(port, () => console.log(`Now Listening on Port: ${port}`));
