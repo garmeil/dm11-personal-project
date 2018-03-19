@@ -8,6 +8,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import "../subcomponents/ProductCard/ProductCard.css";
 import TextField from "material-ui/TextField";
 import Card2Point0 from "../subcomponents/ProductCard/Card2Point0";
+import Example from "../ExampleComponent";
 
 class Shop extends React.Component {
   constructor() {

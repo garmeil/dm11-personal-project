@@ -1,0 +1,1 @@
+INSERT INTO messages (full_name, email, message) VALUES ($1, $2, $3);

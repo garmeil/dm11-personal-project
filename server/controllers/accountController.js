@@ -31,5 +31,15 @@ module.exports = {
         });
       })
       .catch(err => console.log(err));
+  },
+  submitMessage: (req, res, next) => {
+    const { body } = req;
+    req.app
+      .get("db")
+      .submitMessage(body.full_name, body.email, body.message)
+      .then(response => {
+        res.status(200).send(response);
+      })
+      .catch(err => console.log(err));
   }
 };

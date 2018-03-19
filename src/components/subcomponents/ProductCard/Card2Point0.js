@@ -10,6 +10,10 @@ import {
 } from "material-ui/Card";
 import swal from "sweetalert";
 import FlatButton from "material-ui/FlatButton";
+import {
+  NotificationContainer,
+  NotificationManager
+} from "react-notifications";
 
 function Card2Point0(props) {
   let p = props.product;
@@ -48,7 +52,14 @@ function Card2Point0(props) {
               //   button: "Aww yiss!"
               // });
               if (props.user && typeof props.user.id === "number")
-                axios.post(`/api/cart/${p.id}`);
+                axios
+                  .post(`/api/cart/${p.id}`)
+                  .then(response =>
+                    NotificationManager.success(
+                      `Add ${p.name} to Cart`,
+                      "Success"
+                    )
+                  );
               else {
                 swal({
                   title: "Sign In",

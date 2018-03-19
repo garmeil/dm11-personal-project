@@ -34,7 +34,8 @@ const {
 } = require("./controllers/orderController");
 const {
   updateUserInfo,
-  deleteUser
+  deleteUser,
+  submitMessage
 } = require("./controllers/accountController");
 
 massive(process.env.CONNECTION_STRING)
@@ -166,6 +167,7 @@ app.get("/api/user", (req, res, next) => {
 });
 app.put("/api/edit", updateUserInfo);
 app.delete("/api/deleteUser/:id", deleteUser);
+app.post("/api/message", submitMessage);
 
 const path = require("path");
 app.get("*", (req, res) => {
