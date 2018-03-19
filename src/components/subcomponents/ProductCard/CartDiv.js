@@ -24,7 +24,9 @@ class CartDiv extends React.Component {
   remove() {
     axios
       .delete(`/api/cart/all/${this.props.item.id}`)
-      .then(response => this.props.handleClick());
+      .then(response =>
+        this.props.handleClick().then(response => this.props.redirect())
+      );
   }
   render() {
     return (

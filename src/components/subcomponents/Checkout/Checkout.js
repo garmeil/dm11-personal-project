@@ -31,7 +31,7 @@ const onToken = (amount, description, onClick) => token =>
       // this.props.history.push("/ordersubmitted")
       successPayment();
 
-      window.location.href = "/#/ordersubmitted";
+      redirect();
       onClick();
     })
     .catch(errorPayment);

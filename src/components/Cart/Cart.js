@@ -15,6 +15,7 @@ class Cart extends React.Component {
     super();
     this.state = { cartBasket: [] };
     this.handleClick = this.handleClick.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
   componentDidMount() {
     this.props.getCart();
@@ -31,7 +32,9 @@ class Cart extends React.Component {
       swal({ text: "Put something in your cart" });
     }
   }
-
+  redirect() {
+    window.location.href = "/#/ordersubmitted";
+  }
   render() {
     let cartBasket =
       this.props.cart.length > 0
@@ -60,10 +63,12 @@ class Cart extends React.Component {
             description={"Green"}
             amount={this.precisionRound(this.props.total * 1.0875, 2) || 1}
             onClick={this.handleClick}
+            redirect={this.redirect}
           />
           {process.env.NODE_ENV === "production" ? (
             <RaisedButton
               onClick={this.handleClick}
+              redirect={this.redirect}
               label="Checkout"
               primary={true}
               className="LittleMargin"
