@@ -19,7 +19,7 @@ const successPayment = data => {
 const errorPayment = data => {
   alert("Payment Error");
 };
-const onToken = (amount, description, onClick) => token =>
+const onToken = (amount, description, onClick, redirect) => token =>
   axios
     .post(PAYMENT_SERVER_URL, {
       description,
@@ -42,7 +42,7 @@ function Checkout({ name, description, amount, onClick }) {
       name={name}
       description={description}
       amount={fromUsdToCent(amount)}
-      token={onToken(amount, description, onClick)}
+      token={onToken(amount, description, onClick, redirect)}
       currency={CURRENCY}
       stripeKey={process.env.STRIPE_PUBLISHABLE}
     />
