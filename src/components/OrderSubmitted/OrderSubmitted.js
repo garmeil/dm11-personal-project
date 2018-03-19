@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { checkOut, getOrders } from "../../ducks/reducer";
+import { checkOut, getOrders, getCart } from "../../ducks/reducer";
 import { BeatLoader } from "react-spinners";
 import OrdersTable from "../subcomponents/OrdersTable/OrdersTable";
 
@@ -19,7 +19,7 @@ class OrderSubmitted extends React.Component {
       .then(response =>
         this.props
           .getOrders(this.props.currentOrder[0].orderid)
-          .then(response => console.log(response))
+          .then(response => this.props.getCart())
       );
   }
   render() {
@@ -58,6 +58,6 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { checkOut, getOrders })(
+export default connect(mapStateToProps, { checkOut, getOrders, getCart })(
   OrderSubmitted
 );

@@ -15,6 +15,7 @@ class Cart extends React.Component {
     super();
     this.state = { cartBasket: [] };
     this.handleClick = this.handleClick.bind(this);
+    this.handleProductionClick = this.handleProductionClick.bind(this);
     this.redirect = this.redirect.bind(this);
   }
   componentDidMount() {
@@ -25,15 +26,19 @@ class Cart extends React.Component {
     let factor = Math.pow(10, precision);
     return Math.round(number * factor) / factor;
   }
+  redirect() {
+    window.location.href = "/#/ordersubmitted";
+  }
   handleClick() {
-    if (this.props.cart && this.props.cart.length > 0) {
-      this.props.getCart();
+    this.props.getCart();
+  }
+  handleProductionClick() {
+    console.log(this.props);
+    if (this.props && this.props.cart.length > 0) {
+      this.redirect();
     } else {
       swal({ text: "Put something in your cart" });
     }
-  }
-  redirect() {
-    window.location.href = "/#/ordersubmitted";
   }
   render() {
     let cartBasket =
@@ -65,9 +70,9 @@ class Cart extends React.Component {
             onClick={this.handleClick}
             redirect={this.redirect}
           />
-          {process.env.NODE_ENV === "production" ? (
+          {true ? (
             <RaisedButton
-              onClick={this.handleClick}
+              onClick={this.handleProductionClick}
               redirect={this.redirect}
               label="Checkout"
               primary={true}
